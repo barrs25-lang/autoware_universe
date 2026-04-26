@@ -1,9 +1,9 @@
 ### Automatically generated from package.xml ###
-common/autoware_boundary_departure_checker/** Kotakkucu@gmail.com alqudah.mohammad@tier4.jp kyoichi.sugahara@tier4.jp maxime.clement@tier4.jp zulfaqar.azmi@tier4.jp
 common/autoware_component_interface_specs_universe/** isamu.takagi@tier4.jp yukihiro.saito@tier4.jp
 common/autoware_component_interface_tools/** isamu.takagi@tier4.jp
 common/autoware_component_interface_utils/** isamu.takagi@tier4.jp yukihiro.saito@tier4.jp
 common/autoware_cuda_dependency_meta/** esteve.fernandez@tier4.jp
+common/autoware_deprecated_boundary_departure_checker/** Kotakkucu@gmail.com alqudah.mohammad@tier4.jp kyoichi.sugahara@tier4.jp maxime.clement@tier4.jp zulfaqar.azmi@tier4.jp
 common/autoware_fake_test_node/** opensource@apex.ai satoshi.ota@tier4.jp shumpei.wakabayashi@tier4.jp tomoya.kimura@tier4.jp
 common/autoware_glog_component/** takamasa.horibe@tier4.jp
 common/autoware_goal_distance_calculator/** taiki.tanaka@tier4.jp
@@ -128,7 +128,7 @@ planning/autoware_scenario_selector/** fumiya.watanabe@tier4.jp satoshi.ota@tier
 planning/autoware_surround_obstacle_checker/** satoshi.ota@tier4.jp takumi.odashima@tier4.jp
 planning/autoware_trajectory_adapter/** daniel.sanchez@tier4.jp go.sakayori@tier4.jp shintaro.sakoda@tier4.jp yukihiro.saito@tier4.jp
 planning/autoware_trajectory_concatenator/** daniel.sanchez@tier4.jp go.sakayori@tier4.jp shintaro.sakoda@tier4.jp yukihiro.saito@tier4.jp
-planning/autoware_trajectory_modifier/** daniel.sanchez@tier4.jp go.sakayori@tier4.jp shintaro.sakoda@tier4.jp yukihiro.saito@tier4.jp
+planning/autoware_trajectory_modifier/** alqudah.mohammad@tier4.jp daniel.sanchez@tier4.jp go.sakayori@tier4.jp shintaro.sakoda@tier4.jp yukihiro.saito@tier4.jp
 planning/autoware_trajectory_optimizer/** daniel.sanchez@tier4.jp go.sakayori@tier4.jp shintaro.sakoda@tier4.jp yukihiro.saito@tier4.jp
 planning/autoware_trajectory_ranker/** alqudah.mohammad@tier4.jp daniel.sanchez@tier4.jp go.sakayori@tier4.jp shintaro.sakoda@tier4.jp yukihiro.saito@tier4.jp zulfaqar.azmi@tier4.jp
 planning/autoware_trajectory_validator/** Kotakkucu@gmail.com alqudah.mohammad@tier4.jp daniel.sanchez@tier4.jp go.sakayori@tier4.jp maxime.clement@tier4.jp yukihiro.saito@tier4.jp zulfaqar.azmi@tier4.jp
