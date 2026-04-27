@@ -1,0 +1,166 @@
+//Parameter File for Eigen-FMPC
+//Note: comment lines MUST begin with "//"
+//Note: values in matrices MUST be separated by spaces (any number) or tabs
+//Note: units are assumed to be metric
+//Note: "Boyd" refers to the paper "Fast Model Predictive Control Using Online Optimization"
+//Note: "Richards" refers to the paper "Fast Model Predictive Control with Soft Constraints"
+//////////////////////////////////////////////
+// \tilde{R}_r: (n x n)
+1200 0   0   0   0   0   0   0   0   0  0   0   0  0
+0   1200 0   0   0   0   0   0   0   0  0   0   0  0
+0   0   600 0   0   0   0   0   0   0  0   0   0  0
+0   0   0   3000 0   0   0   0   0   0  0   0   0  0
+0   0   0   0   3000 0   0   0   0   0  0   0   0  0
+0   0   0   0   0   3000 0   0   0   0  0   0   0  0
+0   0   0   0   0   0   1000 0   0   0  0   0   0  0
+0   0   0   0   0   0   0   1000 0   0  0   0   0  0
+0   0   0   0   0   0   0   0   3000 0  0   0   0  0
+0   0   0   0   0   0   0   0   0   1000 0   0   0  0
+0   0   0   0   0   0   0   0   0   0  1000 0   0  0
+0   0   0   0   0   0   0   0   0   0  0   3000 0  0
+0   0   0   0   0   0   0   0   0   0  0   0   5000 0  
+0   0   0   0   0   0   0   0   0   0  0   0   0  100
+//////////////////////////////////////////////
+// R_r,f: (n x n)
+50000   0   0   0   0   0   0   0   0   0  0   0   0  0
+0   50000   0   0   0   0   0   0   0   0  0   0   0  0
+0   0   50000 0   0   0   0   0   0   0  0   0   0  0
+0   0   0   1000 0   0   0   0   0   0  0   0   0  0
+0   0   0   0   1000 0   0   0   0   0  0   0   0  0
+0   0   0   0   0   10000 0   0   0   0  0   0   0  0
+0   0   0   0   0   0   1000 0   0   0  0   0   0  0
+0   0   0   0   0   0   0   1000 0   0  0   0   0  0
+0   0   0   0   0   0   0   0   2000 0  0   0   0  0
+0   0   0   0   0   0   0   0   0   100 0   0   0  0
+0   0   0   0   0   0   0   0   0   0  100 0   0  0
+0   0   0   0   0   0   0   0   0   0  0   1000 0  0
+0   0   0   0   0   0   0   0   0   0  0   0   10000  0  
+0   0   0   0   0   0   0   0   0   0  0   0   0  500
+//////////////////////////////////////////////
+// R_{\lambda} (m x m)
+3000  0  0  0
+0  3000  0  0
+0  0  3000  0
+0  0  0  2000
+//////////////////////////////////////////////
+// tilde_R_{r,\lambda} (n x m)
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+0 0 0 0
+//////////////////////////////////////////////
+// tilde_q_r (n-2 x 1)
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+0
+//////////////////////////////////////////////
+// q_psi (1 x 1)
+0
+//////////////////////////////////////////////
+// tilde_q_lambda (m x 1)
+0
+0
+0
+0
+//////////////////////////////////////////////
+//T: see Boyd eqn. 4
+5
+//////////////////////////////////////////////
+//delta_t: temporal difference between successive timesteps
+0.1
+//////////////////////////////////////////////
+//rObs Saturation: Upper bound for the saturation function see Marshall et al. Eq (9).
+4
+//////////////////////////////////////////////
+//num_iterations: see discussion of Kmax in Boyd chapter 4 section B, 'Fixed Iteration Limit'
+5
+//////////////////////////////////////////////
+//residual_tolerance: see discussion of eqn. 8 in Boyd
+0.001
+//////////////////////////////////////////////
+//alpha: see Richards section 3.3 'Implementation' step 4.a.iii
+0.05
+//////////////////////////////////////////////
+//beta: see Richards section 3.3 'Implementation' step 4.b 
+0.3
+//////////////////////////////////////////////
+// line search style
+// 0: decreasing sequence from 1
+// 1: uniform line search (not ready)
+// 2: dichotomous line search 
+// 3: golden section line search (not ready)
+// 4: fibonacci line search (not ready)
+// 5: bisection line search (not ready)
+// 6: Newton's method (not ready)
+// 7: quadratic fit line search (not ready)
+0
+//////////////////////////////////////////////
+//kappa: see Richards section 3.3 'Implementation' step 4.b
+// AKA \mu_12
+20.0
+//////////////////////////////////////////////
+//rho: see Richards section 3.3 'Implementation' step 4.b
+// AKA \mu_13
+5.0
+//////////////////////////////////////////////
+//gamma: see Richards section 3.3 'Implementation' step 4.b
+5
+//////////////////////////////////////////////
+// Weighting on waypoint \mu_{10} and obstacle \mu_{11} following in the objective function.
+// See Equation 9 of Marshall et al. (1 >= \mu_{10} > 0, \mu_{11} >= 0).
+1.0 10.0
+//////////////////////////////////////////////
+// mu_14: minimum distance from obstacles to fly at speed mu_18
+1.0
+//////////////////////////////////////////////
+// mu_15: maximum distance from obstacles to fly at speed mu_18
+2.0
+//////////////////////////////////////////////
+// mu_16: slope of desired speed increase
+1.0
+//////////////////////////////////////////////
+// mu_17: desired speed when too close to obstacles
+0.5
+//////////////////////////////////////////////
+// mu_18: desired speed when at ideal distance from obstacles (between mu_14 and mu_15)
+2.0
+//////////////////////////////////////////////
+// mu_19: maximum distance from obstacles, caps speed 
+5.0
+//////////////////////////////////////////////
+// discount_form: 0: linear, 1: exponential, 2: hyperbolic
+0
+//////////////////////////////////////////////
+// mu_21: linear discount rate (0 < mu_21 < 1) 
+0.9
+//////////////////////////////////////////////
+// mu_22: exponential discount rate (0 < mu_22) 
+1.0
+//////////////////////////////////////////////
+// mu_23: hyperbolic discount rate (0 < mu_23) 
+1.0
+//////////////////////////////////////////////
+// Path stride \nu_X: Number of waypoints to skip in the planned path for boundary condition
+5
+//////////////////////////////////////////////
+// Collision avoidance constraints soft offset \in (0,1)
+0.975

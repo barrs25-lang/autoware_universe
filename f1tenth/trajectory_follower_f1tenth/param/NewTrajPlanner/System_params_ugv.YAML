@@ -1,0 +1,110 @@
+platform:
+  dimensions_m:
+    width: 0.2
+    length: 0.2
+    height: 0.01
+
+  mass_kg: 1.0
+
+  # moment_arm_m: 0.2
+
+  # propeller_drag_coefficient: 0.001
+
+
+dynamics:
+  # inertia_matrix:
+  #   - [0.02046722, 0.0,        0.0]
+  #   - [0.0,        0.01428374, 0.0]
+  #   - [0.0,        0.0,        0.02802025]
+  Iz: 0.02802025
+
+
+  camera_half_fov_deg: 50
+
+  state_dimension: 5
+  control_dimension: 1
+
+  # state space matrix for lateral dynamics (y, v_y, phi, phi_dot) at constant 35m/s forward velocity
+  A_lat:
+    - [1.000000    0.092410    0.000000    -0.147548]
+    - [0.000000    0.852144    0.000000    -2.703181]
+    - [0.000000    0.000000    1.000000    0.083979]
+    - [0.000000    0.000000    0.000000    0.697676]
+
+  B_lat:
+    - [-2.023180]
+    - [-59.382818]
+    - [1.869140]
+    - [35.271095]
+
+  noise:
+    source_type: 0
+    variance: 0.0
+    heading_soft_offset_deg: 5.0
+
+
+constraints:
+  control:
+    hard:
+      count: 8
+      matrix:
+        - [ 1,  0,  0,  0]
+        - [ 0,  1,  0,  0]
+        - [ 0,  0,  1,  0]
+        - [ 0,  0,  0,  1]
+        - [-1,  0,  0,  0]
+        - [ 0, -1,  0,  0]
+        - [ 0,  0, -1,  0]
+        - [ 0,  0,  0, -1]
+      bounds:
+        - 10000
+        - 10000
+        - 10000
+        - 10000
+        - 10000
+        - 10000
+        - 10000
+        - 10000
+
+    soft:
+      count: 8
+      matrix:
+        - [ 1,  0,  0,  0]
+        - [ 0,  1,  0,  0]
+        - [ 0,  0,  1,  0]
+        - [ 0,  0,  0,  1]
+        - [-1,  0,  0,  0]
+        - [ 0, -1,  0,  0]
+        - [ 0,  0, -1,  0]
+        - [ 0,  0,  0, -1]
+      bounds:
+        - 1000
+        - 1000
+        - 1000
+        - 1000
+        - 1000
+        - 1000
+        - 1000
+        - 1000
+
+  # altitude:
+  #   hard_ceiling_m: 6.0
+  #   soft_ceiling_m: 5.6
+  #   hard_floor_m: 0.2
+  #   soft_floor_m: 0.2
+
+  # attitude:
+  #   phi_max_rad: 0.998132
+  #   theta_max_rad: 0.998132
+
+  # thrust:
+  #   min: 0.001
+  #   max: 10.0
+
+
+planner:
+  boundary_condition_slack: 0.05
+
+  centering_soft_constraints: false
+
+  goal_tolerance_m: 0.25

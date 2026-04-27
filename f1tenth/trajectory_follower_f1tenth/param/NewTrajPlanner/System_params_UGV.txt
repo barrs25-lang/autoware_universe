@@ -1,0 +1,143 @@
+//Parameter File for Eigen-FMPC Model System
+//Note: comment lines MUST begin with "//"
+//Note: values in matrices MUST be separated by spaces (any number) or tabs
+//Note: units are assumed to be metric
+//Note: it is generally assumed by the code that indices 0, 4, and 8 of the state vector correspond to spatial coordinates x, y, and z, respectively.
+//Note: "Boyd" refers to the paper "Fast Model Predictive Control Using Online Optimization"
+//////////////////////////////////////////////
+//Platform Dimensions (width x length x height in meters)
+0.2 0.2 0.01
+//////////////////////////////////////////////
+// Mass (kg)
+1.0
+//////////////////////////////////////////////
+// l: moment arm (meters)
+0.2
+//////////////////////////////////////////////
+// cT: propeller drag coefficient 
+0.001
+//////////////////////////////////////////////
+// Matrix of Inertia
+0.02046722 0 0
+0 0.01428374 0
+0 0 0.02802025
+//////////////////////////////////////////////
+// Half of camera field of view (degrees)
+50
+//////////////////////////////////////////////
+//Number of State Elements: x,\dot{x},\phi,\dot{\phi},y,\dot{y},\theta,\dot{\theta},z,\dot{z},\psi,\dot{\psi}
+4
+//////////////////////////////////////////////
+//Number of Control Inputs: u1,u2,u3,u4 (thrust, roll, pitch, yaw)
+1
+//////////////////////////////////////////////
+//A Matrix (n x n)
+1.000000    0.092410    0.000000    -0.147548
+0.000000    0.852144    0.000000    -2.703181
+0.000000    0.000000    1.000000    0.083979
+0.000000    0.000000    0.000000    0.697676
+//////////////////////////////////////////////
+//B Matrix (n x m)
+//Note: values in this matrix should assume delta-t = 1
+// Calculated with m =2.0kg, Ixx = 0.02046722, Iyy = 0.01428374, Izz = 0.02802025 kg m^2
+// See MATLAB script "discrete_dynamics_fmpc.m" for more information.
+-2.023180
+-59.382818
+1.869140
+35.271095
+//////////////////////////////////////////////
+// Noise (w_bar) in system dynamics source.
+// (0) constant (next entry) (1) perlin noise generation.
+0
+//////////////////////////////////////////////
+// Noise (w_bar) in system dynamics. Each element of the vector (n x 1) is assumed to be the same.
+0.0
+//////////////////////////////////////////////
+// Heading angle cone offset for heading soft constraints: \mu_20 >= 0
+5.0
+//////////////////////////////////////////////
+//Number of Hard Control Constraints
+//Note: hard constraints should represent the physical capabilities of the system, e.g. "it cannot  
+//supply a thrust greater than some amount"
+8
+//////////////////////////////////////////////
+//Hard Control Constraint Matrix: see F_u in Boyd eqn. 3
+1  0  0  0
+0  1  0  0
+0  0  1  0
+0  0  0   1
+-1 0  0  0
+0 -1  0  0
+0  0 -1  0
+0  0  0 -1
+//////////////////////////////////////////////
+//Hard Control Bounds Vector: see f_u in Boyd eqn. 3 (all originally set to 10)
+10000
+10000
+10000
+10000
+10000
+10000
+10000
+10000
+//////////////////////////////////////////////
+//Number of Soft Control Constraints
+//Note: soft constraints should represent desired behaviors of the system, e.g. "it should be 
+//reluctant to supply thrust approaching or exceeding some threshold (perhaps for the sake of battery 
+//life)"
+8
+//////////////////////////////////////////////
+//Soft Control Constraint Matrix
+1	0	0	0
+0	1	0	0
+0	0	1	0
+0	0	0	1
+-1	0	0	0
+0	-1	0	0
+0	0	-1	0
+0	0	0	-1
+//////////////////////////////////////////////
+//Soft Control Bounds Vector (all originally set to 10)
+1000
+1000
+1000
+1000
+1000
+1000
+1000
+1000
+//////////////////////////////////////////////
+//Hard altitude ceiling for trajectory planner (meters)
+6
+//////////////////////////////////////////////
+//Soft altitude ceiling for trajectory planner (meters)
+5.6
+//////////////////////////////////////////////
+//Hard altitude floor for trajectory planner (meters)
+0.2
+//////////////////////////////////////////////
+//Soft altitude floor for trajectory planner (meters)
+0.2
+//////////////////////////////////////////////
+// Phi max
+0.998132
+//////////////////////////////////////////////
+// Theta max
+0.998132
+//////////////////////////////////////////////
+// Thrust min
+0.001
+//////////////////////////////////////////////
+// Thrust max
+10
+//////////////////////////////////////////////
+// boundary condition slack: bc_epsilon
+0.05
+//////////////////////////////////////////////
+// Switch for centering soft constraints
+// 0 for no centering (constant \rho)
+// 1 for centering
+0
+//////////////////////////////////////////////
+// goal tolerance
+0.25
